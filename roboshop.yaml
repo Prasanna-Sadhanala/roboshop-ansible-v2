@@ -1,11 +1,11 @@
--name: robosho instance management
+- name: robosho instance management
   host: local
   connection: local
   var: 
     instances: [mongodb, redis, mysql, rabbitmq]
     image_id: ami-0220d79f3f480ecf5
   tasks: 
-  -name: create ec2 instances
+  - name: create ec2 instances
     amazon.aws.ec2-instance:
       instance-type: t3.micro
       name: "roboshop-{{ item }}"
@@ -15,7 +15,7 @@
       - "roboshop-common"
     loop: "{{ instance }}"
     rigister: ec2-output
-  -name: print output
+  - name: print output
     debug:
       msg:"{{ ec2-output }}"
    
